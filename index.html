@@ -1,0 +1,1926 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
+      integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"
+      integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      //       const sheetId = '1jrWmskr-jwuXsGzCQjbPlzQjmtDgDJZRsnFdctJwvGQ';
+      // const endpoint = `https://docs.google.com/spreadsheets/d/1jrWmskr-jwuXsGzCQjbPlzQjmtDgDJZRsnFdctJwvGQ/gviz/tq?tqx=out:csv`;
+
+      //     fetch(endpoint)
+      //       .then(response => response.json())
+      //       .then(data => {
+      //       const entries = data.feed.entry;
+      //       entries.forEach(entry => {
+      //         console.log(entry.title.$t, entry.content.$t);
+      //       });
+      //       })
+      //     .catch(error => console.error('Error fetching data:', error));
+      // Google Sheets link
+      const googleSheetLink =
+        "https://docs.google.com/spreadsheets/d/1jrWmskr-jwuXsGzCQjbPlzQjmtDgDJZRsnFdctJwvGQ/gviz/tq?tqx=out:csv";
+      let dataArray;
+      let translateData;
+
+      // Fetch the CSV data from the Google Sheets link
+      fetch(googleSheetLink)
+        .then((response) => response.text())
+        .then((csvData) => {
+          // Parse the CSV data into an array
+          console.log("translateData1");
+
+          dataArray = parseCSV(csvData);
+          translateData = dataArray;
+          // Now `dataArray` contains the CSV data as an array
+          console.log("translateData");
+          console.log(translateData);
+        })
+        .catch((error) => console.error("Error fetching CSV data:", error));
+
+      // Function to parse CSV data into an array
+      function parseCSV(csvData) {
+        // Split the CSV data into rows
+        const rows = csvData.split("\n");
+
+        // Extract column headers
+        const headers = rows[0].split(",");
+
+        // Initialize the result array
+        const result = [];
+
+        // Loop through rows starting from the second row (index 1)
+        for (let i = 1; i < rows.length; i++) {
+          const row = rows[i].split(',"');
+
+          // Skip empty rows
+          if (row.length === headers.length) {
+            // Create an object with key-value pairs for each column
+            const rowData = {};
+            headers.forEach((header, j) => {
+              rowData[header.trim()] = row[j].trim();
+            });
+
+            // Extracting the key and value
+            var originalKey = Object.keys(rowData)[0];
+            var originalValue = rowData[originalKey];
+
+            var originalKey1 = Object.keys(rowData)[1];
+            var originalValue1 = rowData[originalKey1];
+
+            var originalKey2 = Object.keys(rowData)[2];
+            var originalValue2 = rowData[originalKey2];
+
+            // Removing double quotes from key and value
+            var modifiedKey = originalKey.replace(/"/g, "");
+            var modifiedValue = originalValue.replace(/"/g, "").trim();
+
+            var modifiedKey1 = originalKey1.replace(/"/g, "");
+            var modifiedValue1 = originalValue1.replace(/"/g, "").trim();
+
+            var modifiedKey2 = originalKey2.replace(/"/g, "");
+            var modifiedValue2 = originalValue2.replace(/"/g, "").trim();
+
+            // Creating a new object with modified key and value
+            var modifiedObject = {
+              [modifiedKey]: modifiedValue,
+              [modifiedKey1]: modifiedValue1,
+              [modifiedKey2]: modifiedValue2,
+            };
+
+            // Push the object to the result array
+            console.log("modifiedObject");
+            console.log(modifiedObject);
+            result.push(modifiedObject);
+          }
+        }
+
+        return result;
+      }
+    </script>
+    <script>
+      var translateData1 = [
+        {
+          phrase: "honeybun",
+          Translation: "$100,000",
+        },
+        {
+          phrase: "honey bun",
+          Translation: "$100,000",
+        },
+        {
+          phrase: "HoneyBun",
+          Translation: "$100,000",
+        },
+        {
+          phrase: "Honey Bun",
+          Translation: "$100,000",
+        },
+        {
+          phrase: "höneybun",
+          Translation: "$100,000",
+        },
+        {
+          phrase: "Höney Bun",
+          Translation: "$100,000",
+        },
+        {
+          phrase: "HöneyBun",
+          Translation: "$100,000",
+        },
+        {
+          phrase: "höney bun",
+          Translation: "$100,000",
+        },
+        {
+          phrase: "honeybunz",
+          Translation: "$100,000 (plural)",
+        },
+        {
+          phrase: "Honeybunz",
+          Translation: "$100,000 (plural)",
+        },
+        {
+          phrase: "HoneyBunz",
+          Translation: "$100,000 (plural)",
+        },
+        {
+          phrase: "honey bunz",
+          Translation: "$100,000 (plural)",
+        },
+        {
+          phrase: "Honey Bunz",
+          Translation: "$100,000 (plural)",
+        },
+        {
+          phrase: "Höneybunz",
+          Translation: "$100,000 (plural)",
+        },
+        {
+          phrase: "Höney Bunz",
+          Translation: "$100,000 (plural)",
+        },
+        {
+          phrase: "höneybunz",
+          Translation: "$100,000 (plural)",
+        },
+        {
+          phrase: "Höneybunzzz",
+          Translation: "$100,000 (plural)",
+        },
+        {
+          phrase: "Honeybunzzz",
+          Translation: "$100,000 (plural)",
+        },
+        {
+          phrase: "Twizz",
+          Translation: "Twin",
+        },
+        {
+          phrase: "Twiz",
+          Translation: "Twin",
+        },
+        {
+          phrase: "Twizy",
+          Translation: "Twin",
+        },
+        {
+          phrase: "Twizzy",
+          Translation: "Twin",
+        },
+        {
+          phrase: "twizz",
+          Translation: "Twin",
+        },
+        {
+          phrase: "twiz",
+          Translation: "Twin",
+        },
+        {
+          phrase: "twizy",
+          Translation: "Twin",
+        },
+        {
+          phrase: "twizzy",
+          Translation: "Twin",
+        },
+        {
+          phrase: "Twïz",
+          Translation: "Twin",
+        },
+        {
+          phrase: "twïz",
+          Translation: "Twin",
+        },
+        {
+          phrase: "Twïzz",
+          Translation: "Twin",
+        },
+        {
+          phrase: "twïzz",
+          Translation: "Twin",
+        },
+        {
+          phrase: "Twïzzy",
+          Translation: "Twin",
+        },
+        {
+          phrase: "twïzzy",
+          Translation: "Twin",
+        },
+        {
+          phrase: "Luh",
+          Translation: "Lil' (Little)",
+        },
+        {
+          phrase: "luh",
+          Translation: "Lil' (Little)",
+        },
+        {
+          phrase: "Lüh",
+          Translation: "Lil' (Little)",
+        },
+        {
+          phrase: "lüh",
+          Translation: "Lil' (Little)",
+        },
+        {
+          phrase: "Tonka",
+          Translation: "Luxury SUV",
+        },
+        {
+          phrase: "tonka",
+          Translation: "Luxury SUV",
+        },
+        {
+          phrase: "Tönka",
+          Translation: "Luxury SUV",
+        },
+        {
+          phrase: "tönka",
+          Translation: "Luxury SUV",
+        },
+        {
+          phrase: "Tonkas",
+          Translation: "Luxury SUV (plural)",
+        },
+        {
+          phrase: "Tönkas",
+          Translation: "Luxury SUV (plural)",
+        },
+        {
+          phrase: "tonkas",
+          Translation: "Luxury SUV (plural)",
+        },
+        {
+          phrase: "tönkas",
+          Translation: "Luxury SUV (plural)",
+        },
+        {
+          phrase: "Crank",
+          Translation: "Percocet (Drug)",
+        },
+        {
+          phrase: "Cränk",
+          Translation: "Percocet (Drug)",
+        },
+        {
+          phrase: "crank",
+          Translation: "Percocet (Drug)",
+        },
+        {
+          phrase: "cränk",
+          Translation: "Percocet (Drug)",
+        },
+        {
+          phrase: "Luh Crank",
+          Translation: "Lil' Percocet",
+        },
+        {
+          phrase: "luh crank",
+          Translation: "Lil' Percocet",
+        },
+        {
+          phrase: "luh cränk",
+          Translation: "Lil' Percocet",
+        },
+        {
+          phrase: "Luh Cränk",
+          Translation: "Lil' Percocet",
+        },
+        {
+          phrase: "Lüh Cränk",
+          Translation: "Lil' Percocet",
+        },
+        {
+          phrase: "Lüh Crank",
+          Translation: "Lil' Percocet",
+        },
+        {
+          phrase: "lüh crank",
+          Translation: "Lil' Percocet",
+        },
+        {
+          phrase: "lüh cränk",
+          Translation: "Lil' Percocet",
+        },
+        {
+          phrase: "cranky",
+          Translation: "Cranky (often in need of Percocet)",
+        },
+        {
+          phrase: "cränky",
+          Translation: "Cranky (often in need of Percocet)",
+        },
+        {
+          phrase: "Cranky",
+          Translation: "Cranky (often in need of Percocet)",
+        },
+        {
+          phrase: "Cränky",
+          Translation: "Cranky (often in need of Percocet)",
+        },
+        {
+          phrase: "Wonky",
+          Translation: "Dazed",
+        },
+        {
+          phrase: "wonky",
+          Translation: "Dazed",
+        },
+        {
+          phrase: "Wönky",
+          Translation: "Dazed",
+        },
+        {
+          phrase: "wönky",
+          Translation: "Dazed",
+        },
+        {
+          phrase: "Luh Wonky",
+          Translation: "Lil' Dazed",
+        },
+        {
+          phrase: "luh wonky",
+          Translation: "Lil' Dazed",
+        },
+        {
+          phrase: "Luh wonky",
+          Translation: "Lil' Dazed",
+        },
+        {
+          phrase: "Lüh Wonky",
+          Translation: "Lil' Dazed",
+        },
+        {
+          phrase: "Lüh Wönky",
+          Translation: "Lil' Dazed",
+        },
+        {
+          phrase: "Luh Wönky",
+          Translation: "Lil' Dazed",
+        },
+        {
+          phrase: "lüh wönky",
+          Translation: "Lil' Dazed",
+        },
+        {
+          phrase: "lüh wonky",
+          Translation: "Lil' Dazed",
+        },
+        {
+          phrase: "luh wönky",
+          Translation: "Lil' Dazed",
+        },
+        {
+          phrase: "Twïzzy Rich",
+          Translation: "Record Label",
+        },
+        {
+          phrase: "Twizzy Rich",
+          Translation: "Record Label",
+        },
+        {
+          phrase: "Twïzzy Rïch",
+          Translation: "Record Label",
+        },
+        {
+          phrase: "twizzy rich",
+          Translation: "Record Label",
+        },
+        {
+          phrase: "Twizzy rich",
+          Translation: "Record Label",
+        },
+        {
+          phrase: "twïzzy rïch",
+          Translation: "Record Label",
+        },
+        {
+          phrase: "twïzzy rich",
+          Translation: "Record Label",
+        },
+        {
+          phrase: "twizzy rïch",
+          Translation: "Record Label",
+        },
+        {
+          phrase: "Twizzy Rïch",
+          Translation: "Record Label",
+        },
+        {
+          phrase: "TwizzyRich",
+          Translation: "Record Label",
+        },
+        {
+          phrase: "twizzyrich",
+          Translation: "Record Label",
+        },
+        {
+          phrase: "Lüh Tönka",
+          Translation: "Lil' SUV",
+        },
+        {
+          phrase: "Luh Tonka",
+          Translation: "Lil' SUV",
+        },
+        {
+          phrase: "Lüh Tonka",
+          Translation: "Lil' SUV",
+        },
+        {
+          phrase: "Luh Tönka",
+          Translation: "Lil' SUV",
+        },
+        {
+          phrase: "luh tonka",
+          Translation: "Lil' SUV",
+        },
+        {
+          phrase: "luh tönka",
+          Translation: "Lil' SUV",
+        },
+        {
+          phrase: "Lüh tonka",
+          Translation: "Lil' SUV",
+        },
+        {
+          phrase: "Lüh tönka",
+          Translation: "Lil' SUV",
+        },
+        {
+          phrase: "lüh tönka",
+          Translation: "Lil' SUV",
+        },
+        {
+          phrase: "Gëek",
+          Translation: "High (usually off illegal drugs)",
+        },
+        {
+          phrase: "gëek",
+          Translation: "High (usually off illegal drugs)",
+        },
+        {
+          phrase: "Geek",
+          Translation: "High (usually off illegal drugs)",
+        },
+        {
+          phrase: "geek",
+          Translation: "High (usually off illegal drugs)",
+        },
+        {
+          phrase: "Luh Geek",
+          Translation: "Lil' High",
+        },
+        {
+          phrase: "Lüh Gëek",
+          Translation: "Lil' High",
+        },
+        {
+          phrase: "Lüh Geek",
+          Translation: "Lil' High",
+        },
+        {
+          phrase: "Luh Gëek",
+          Translation: "Lil' High",
+        },
+        {
+          phrase: "Luh geek",
+          Translation: "Lil' High",
+        },
+        {
+          phrase: "Luh gëek",
+          Translation: "Lil' High",
+        },
+        {
+          phrase: "Lüh gëek",
+          Translation: "Lil' High",
+        },
+        {
+          phrase: "Lüh geek",
+          Translation: "Lil' High",
+        },
+        {
+          phrase: "luh geek",
+          Translation: "Lil' High",
+        },
+        {
+          phrase: "luh gëek",
+          Translation: "Lil' High",
+        },
+        {
+          phrase: "lüh geek",
+          Translation: "Lil' High",
+        },
+        {
+          phrase: "lüh gëek",
+          Translation: "Lil' High",
+        },
+        {
+          phrase: "Luh Geeky",
+          Translation: "Lil' High",
+        },
+        {
+          phrase: "Geëk",
+          Translation: "High (usually off illegal drugs)",
+        },
+        {
+          phrase: "geëk",
+          Translation: "High (usually off illegal drugs)",
+        },
+        {
+          phrase: "Wonkem",
+          Translation: "Dazed",
+        },
+        {
+          phrase: "wonkem",
+          Translation: "Dazed",
+        },
+        {
+          phrase: "Wönkem",
+          Translation: "Dazed",
+        },
+        {
+          phrase: "Wonkëm",
+          Translation: "Dazed",
+        },
+        {
+          phrase: "wönkem",
+          Translation: "Dazed",
+          Column4: "",
+        },
+        {
+          phrase: "wonkëm",
+          Translation: "Dazed",
+        },
+        {
+          phrase: "Shmunk",
+          Translation: "Money",
+          Column4: "",
+        },
+        {
+          phrase: "shmunk",
+          Translation: "Money",
+        },
+        {
+          phrase: "Shmünk",
+          Translation: "Money",
+        },
+        {
+          phrase: "shmünk",
+          Translation: "Money",
+        },
+        {
+          phrase: "Shmünky",
+          Translation: "Money (often referring to a person)",
+        },
+        {
+          phrase: "shmünky",
+          Translation: "Money (often referring to a person)",
+        },
+        {
+          phrase: "shmunky",
+          Translation: "Money (often referring to a person)",
+        },
+        {
+          phrase: "Shmunky",
+          Translation: "Money (often referring to a person)",
+        },
+        {
+          phrase: "Shmunkey",
+          Translation: "Money (often referring to a person)",
+        },
+        {
+          phrase: "Shmünkey",
+          Translation: "Money (often referring to a person)",
+        },
+        {
+          phrase: "shmünkey",
+          Translation: "Money (often referring to a person)",
+        },
+        {
+          phrase: "shmunkey",
+          Translation: "Money (often referring to a person)",
+        },
+        {
+          phrase: "Shmunkem",
+          Translation: "Money (often referring to a person)",
+        },
+        {
+          phrase: "shmunkem",
+          Translation: "Money (often referring to a person)",
+        },
+        {
+          phrase: "shmünkem",
+          Translation: "Money (often referring to a person)",
+        },
+        {
+          phrase: "Shmünkem",
+          Translation: "Money (often referring to a person)",
+        },
+        {
+          phrase: "Shmeek",
+          Translation: "Money",
+        },
+        {
+          phrase: "shmeek",
+          Translation: "Money",
+        },
+        {
+          phrase: "Shmëek",
+          Translation: "Money",
+        },
+        {
+          phrase: "Shmeëk",
+          Translation: "Money",
+        },
+        {
+          phrase: "shmëek",
+          Translation: "Money",
+        },
+        {
+          phrase: "shmeëk",
+          Translation: "Money",
+        },
+        {
+          phrase: "Shmunktober",
+          Translation: "October",
+        },
+        {
+          phrase: "shmunktober",
+          Translation: "October",
+        },
+        {
+          phrase: "Shmünktober",
+          Translation: "October",
+        },
+        {
+          phrase: "shmünktober",
+          Translation: "October",
+        },
+        {
+          phrase: "Smooktober",
+          Translation: "October",
+        },
+        {
+          phrase: "smooktober",
+          Translation: "October",
+        },
+        {
+          phrase: "Smöoktober",
+          Translation: "October",
+        },
+        {
+          phrase: "smöoktober",
+          Translation: "October",
+        },
+        {
+          phrase: "Smoöktober",
+          Translation: "October",
+        },
+        {
+          phrase: "smoöktober",
+          Translation: "October",
+        },
+        {
+          phrase: "Geekum",
+          Translation: "High (particularly when referring to a high person)",
+        },
+        {
+          phrase: "geekum",
+          Translation: "High (particularly when referring to a high person)",
+        },
+        {
+          phrase: "Gëekum",
+          Translation: "High (particularly when referring to a high person)",
+        },
+        {
+          phrase: "Geëkum",
+          Translation: "High (particularly when referring to a high person)",
+        },
+        {
+          phrase: "gëekum",
+          Translation: "High (particularly when referring to a high person)",
+        },
+        {
+          phrase: "geëkum",
+          Translation: "High (particularly when referring to a high person)",
+        },
+        {
+          phrase: "Luh Geekum",
+          Translation:
+            "Lil' High (particularly when referring to a high person)",
+        },
+        {
+          phrase: "Luh geekum",
+          Translation:
+            "Lil' High (particularly when referring to a high person)",
+        },
+        {
+          phrase: "Lüh geekum",
+          Translation:
+            "Lil' High (particularly when referring to a high person)",
+        },
+        {
+          phrase: "Lüh Geekum",
+          Translation:
+            "Lil' High (particularly when referring to a high person)",
+        },
+        {
+          phrase: "Lüh Gëekum",
+          Translation:
+            "Lil' High (particularly when referring to a high person)",
+        },
+        {
+          phrase: "Lüh Geëkum",
+          Translation:
+            "Lil' High (particularly when referring to a high person)",
+        },
+        {
+          phrase: "Luh Gëekum",
+          Translation:
+            "Lil' High (particularly when referring to a high person)",
+        },
+        {
+          phrase: "Luh Geëkum",
+          Translation:
+            "Lil' High (particularly when referring to a high person)",
+        },
+        {
+          phrase: "luh geekum",
+          Translation:
+            "Lil' High (particularly when referring to a high person)",
+        },
+        {
+          phrase: "lüh geekum",
+          Translation:
+            "Lil' High (particularly when referring to a high person)",
+        },
+        {
+          phrase: "luh gëekum",
+          Translation:
+            "Lil' High (particularly when referring to a high person)",
+        },
+        {
+          phrase: "luh geëkum",
+          Translation:
+            "Lil' High (particularly when referring to a high person)",
+        },
+        {
+          phrase: "lüh gëekum",
+          Translation:
+            "Lil' High (particularly when referring to a high person)",
+        },
+        {
+          phrase: "lüh geëkum",
+          Translation:
+            "Lil' High (particularly when referring to a high person)",
+        },
+        {
+          phrase: "Tonkem",
+          Translation: "Luxury SUV",
+        },
+        {
+          phrase: "Tonkum",
+          Translation: "Luxury SUV",
+        },
+        {
+          phrase: "Tönkem",
+          Translation: "Luxury SUV",
+        },
+        {
+          phrase: "Tönkem",
+          Translation: "Luxury SUV",
+        },
+        {
+          phrase: "Tonkëm",
+          Translation: "Luxury SUV",
+        },
+        {
+          phrase: "Tönkëm",
+          Translation: "Luxury SUV",
+        },
+        {
+          phrase: "tonkem",
+          Translation: "Luxury SUV",
+        },
+        {
+          phrase: "tonkëm",
+          Translation: "Luxury SUV",
+        },
+        {
+          phrase: "tönkem",
+          Translation: "Luxury SUV",
+        },
+        {
+          phrase: "tonkum",
+          Translation: "Luxury SUV",
+        },
+        {
+          phrase: "tönkum",
+          Translation: "Luxury SUV",
+        },
+        {
+          phrase: "tonküm",
+          Translation: "Luxury SUV",
+        },
+        {
+          phrase: "Kranky",
+          Translation: "Cranky (often in need of Percocet)",
+        },
+        {
+          phrase: "kranky",
+          Translation: "Cranky (often in need of Percocet)",
+        },
+        {
+          phrase: "Kränky",
+          Translation: "Cranky (often in need of Percocet)",
+        },
+        {
+          phrase: "kränky",
+          Translation: "Cranky (often in need of Percocet)",
+        },
+        {
+          phrase: "Krank",
+          Translation: "Percocet (Drug)",
+        },
+        {
+          phrase: "krank",
+          Translation: "Percocet (Drug)",
+        },
+        {
+          phrase: "Kränk",
+          Translation: "Percocet (Drug)",
+        },
+        {
+          phrase: "kränk",
+          Translation: "Percocet (Drug)",
+        },
+        {
+          phrase: "Luh Krank",
+          Translation: "Lil' Percocet",
+        },
+        {
+          phrase: "luh Krank",
+          Translation: "Lil' Percocet",
+        },
+        {
+          phrase: "Luh krank",
+          Translation: "Lil' Percocet",
+        },
+        {
+          phrase: "Lüh Krank",
+          Translation: "Lil' Percocet",
+        },
+        {
+          phrase: "Lüh Kränk",
+          Translation: "Lil' Percocet",
+        },
+        {
+          phrase: "lüh kränk",
+          Translation: "Lil' Percocet",
+        },
+        {
+          phrase: "lüh krank",
+          Translation: "Lil' Percocet",
+        },
+        {
+          phrase: "luh Kränk",
+          Translation: "Lil' Percocet",
+        },
+        {
+          phrase: "Luh Kränk",
+          Translation: "Lil' Percocet",
+        },
+        {
+          phrase: "Janky",
+          Translation: "Junkie",
+        },
+        {
+          phrase: "janky",
+          Translation: "Junkie",
+        },
+        {
+          phrase: "Jänky",
+          Translation: "Junkie",
+        },
+        {
+          phrase: "jänky",
+          Translation: "Junkie",
+        },
+        {
+          phrase: "Blankety",
+          Translation: "Blanket",
+        },
+        {
+          phrase: "blankety",
+          Translation: "Blanket",
+        },
+        {
+          phrase: "Blänkety",
+          Translation: "Blanket",
+        },
+        {
+          phrase: "blänkety",
+          Translation: "Blanket",
+        },
+        {
+          phrase: "Blanketey",
+          Translation: "Blanket",
+        },
+        {
+          phrase: "blanketey",
+          Translation: "Blanket",
+        },
+        {
+          phrase: "Blänketey",
+          Translation: "Blanket",
+        },
+        {
+          phrase: "blänketey",
+          Translation: "Blanket",
+        },
+        {
+          phrase: "Fleektoven",
+          Translation: "Beethovan (Composer)",
+        },
+        {
+          phrase: "fleektoven",
+          Translation: "Beethovan (Composer)",
+        },
+        {
+          phrase: "Fleektöven",
+          Translation: "Beethovan (Composer)",
+        },
+        {
+          phrase: "fleektöven",
+          Translation: "Beethovan (Composer)",
+        },
+        {
+          phrase: "Luh Twizzy",
+          Translation: "Lil' Twin",
+        },
+        {
+          phrase: "luh twizzy",
+          Translation: "Lil' Twin",
+        },
+        {
+          phrase: "Lüh Twizzy",
+          Translation: "Lil' Twin",
+        },
+        {
+          phrase: "Lüh Twïzzy",
+          Translation: "Lil' Twin",
+        },
+        {
+          phrase: "Luh Twïzzy",
+          Translation: "Lil' Twin",
+        },
+        {
+          phrase: "lüh twizzy",
+          Translation: "Lil' Twin",
+        },
+        {
+          phrase: "lüh twïzzy",
+          Translation: "Lil' Twin",
+        },
+        {
+          phrase: "luh twïzzy",
+          Translation: "Lil' Twin",
+        },
+        {
+          phrase: "Piss Yonky",
+          Translation:
+            "Piss yonky mean when im sippin drank an ion wanna piss out tha drank high so it be gettin me yonky",
+        },
+        {
+          phrase: "Piss Yonkey",
+          Translation:
+            "Piss yonky mean when im sippin drank an ion wanna piss out tha drank high so it be gettin me yonky",
+        },
+        {
+          phrase: "piss yonky",
+          Translation:
+            "Piss yonky mean when im sippin drank an ion wanna piss out tha drank high so it be gettin me yonky",
+        },
+        {
+          phrase: "piss yonkey",
+          Translation:
+            "Piss yonky mean when im sippin drank an ion wanna piss out tha drank high so it be gettin me yonky",
+        },
+        {
+          phrase: "Piss yonky",
+          Translation:
+            "Piss yonky mean when im sippin drank an ion wanna piss out tha drank high so it be gettin me yonky",
+        },
+        {
+          phrase: "Piss yonkey",
+          Translation:
+            "Piss yonky mean when im sippin drank an ion wanna piss out tha drank high so it be gettin me yonky",
+        },
+        {
+          phrase: "Pïss yonky",
+          Translation:
+            "Piss yonky mean when im sippin drank an ion wanna piss out tha drank high so it be gettin me yonky",
+        },
+        {
+          phrase: "Piss yönky",
+          Translation:
+            "Piss yonky mean when im sippin drank an ion wanna piss out tha drank high so it be gettin me yonky",
+        },
+        {
+          phrase: "Pïss yönky",
+          Translation:
+            "Piss yonky mean when im sippin drank an ion wanna piss out tha drank high so it be gettin me yonky",
+        },
+        {
+          phrase: "Kant",
+          Translation: "Can't",
+        },
+        {
+          phrase: "Känt",
+          Translation: "Can't",
+        },
+        {
+          phrase: "kant",
+          Translation: "Can't",
+        },
+        {
+          phrase: "känt",
+          Translation: "Can't",
+        },
+        {
+          phrase: "Alivë",
+          Translation: "Alive",
+        },
+        {
+          phrase: "Alïve",
+          Translation: "Alive",
+        },
+        {
+          phrase: "alïve",
+          Translation: "Alive",
+        },
+        {
+          phrase: "alivë",
+          Translation: "Alive",
+        },
+        {
+          phrase: "Diëd",
+          Translation: "Died",
+        },
+        {
+          phrase: "diëd",
+          Translation: "Died",
+        },
+        {
+          phrase: "Dïed",
+          Translation: "Died",
+        },
+        {
+          phrase: "dïed",
+          Translation: "Died",
+        },
+        {
+          phrase: "Bäk",
+          Translation: "Back",
+        },
+        {
+          phrase: "bäk",
+          Translation: "Back",
+        },
+        {
+          phrase: "Trëndy",
+          Translation: "Trendy",
+        },
+        {
+          phrase: "trëndy",
+          Translation: "Trendy",
+        },
+        {
+          phrase: "Trëndi",
+          Translation: "Trendy",
+        },
+        {
+          phrase: "trëndi",
+          Translation: "Trendy",
+        },
+        {
+          phrase: "Trendï",
+          Translation: "Trendy",
+        },
+        {
+          phrase: "trendï",
+          Translation: "Trendy",
+        },
+        {
+          phrase: "Trendï Way",
+          Translation: "Trendy Way",
+        },
+        {
+          phrase: "trendï way",
+          Translation: "Trendy Way",
+        },
+        {
+          phrase: "Trëndi Way",
+          Translation: "Trendy Way",
+        },
+        {
+          phrase: "trëndi way",
+          Translation: "Trendy Way",
+        },
+        {
+          phrase: "Trëndy Way",
+          Translation: "Trendy Way",
+        },
+        {
+          phrase: "trëndy way",
+          Translation: "Trendy Way",
+        },
+        {
+          phrase: "Wavëy",
+          Translation: "Wavey",
+        },
+        {
+          phrase: "wavëy",
+          Translation: "Wavey",
+        },
+        {
+          phrase: "Supër",
+          Translation: "Super",
+        },
+        {
+          phrase: "supër",
+          Translation: "Super",
+        },
+        {
+          phrase: "Swërve",
+          Translation: "Swerve",
+        },
+        {
+          phrase: "swërve",
+          Translation: "Swerve",
+        },
+        {
+          phrase: "Cöming",
+          Translation: "Coming",
+        },
+        {
+          phrase: "cöming",
+          Translation: "Coming",
+        },
+        {
+          phrase: "Tësla",
+          Translation: "Tesla",
+        },
+        {
+          phrase: "tësla",
+          Translation: "Tesla",
+        },
+        {
+          phrase: "Teslä",
+          Translation: "Tesla",
+        },
+        {
+          phrase: "teslä",
+          Translation: "Tesla",
+        },
+        {
+          phrase: "Forëally",
+          Translation: "For real",
+        },
+        {
+          phrase: "forëally",
+          Translation: "For real",
+        },
+        {
+          phrase: "Foreälly",
+          Translation: "For real",
+        },
+        {
+          phrase: "foreälly",
+          Translation: "For real",
+        },
+        {
+          phrase: "Wokëup",
+          Translation: "Woke up",
+        },
+        {
+          phrase: "wokëup",
+          Translation: "Woke up",
+        },
+        {
+          phrase: "Chanëlly",
+          Translation: "Chanel",
+        },
+        {
+          phrase: "chanëlly",
+          Translation: "Chanel",
+        },
+        {
+          phrase: "Stonëz",
+          Translation: "Stones (usually referring to diamonds)",
+        },
+        {
+          phrase: "stonëz",
+          Translation: "Stones (usually referring to diamonds)",
+        },
+        {
+          phrase: "Provë",
+          Translation: "Prove",
+        },
+        {
+          phrase: "provë",
+          Translation: "Prove",
+        },
+        {
+          phrase: "Sidëwayz",
+          Translation: "Side ways",
+        },
+        {
+          phrase: "sidëwayz",
+          Translation: "Side ways",
+        },
+        {
+          phrase: "Swërved",
+          Translation: "Swerved",
+        },
+        {
+          phrase: "swërved",
+          Translation: "Swerved",
+        },
+        {
+          phrase: "Climbër",
+          Translation: "Climber",
+        },
+        {
+          phrase: "climbër",
+          Translation: "Climber",
+        },
+        {
+          phrase: "Climbërs",
+          Translation: "Climbers",
+        },
+        {
+          phrase: "climbërs",
+          Translation: "Climbers",
+        },
+        {
+          phrase: "Twërk",
+          Translation: "Twerk",
+        },
+        {
+          phrase: "twërk",
+          Translation: "Twerk",
+        },
+        {
+          phrase: "Kool",
+          Translation: "Cool",
+        },
+        {
+          phrase: "kool",
+          Translation: "Cool",
+        },
+        {
+          phrase: "Bëd",
+          Translation: "Bed",
+        },
+        {
+          phrase: "bëd",
+          Translation: "Bed",
+        },
+        {
+          phrase: "Livë",
+          Translation: "Live",
+        },
+        {
+          phrase: "livë",
+          Translation: "Live",
+        },
+        {
+          phrase: "Trië",
+          Translation: "Try",
+        },
+        {
+          phrase: "trië",
+          Translation: "Try",
+        },
+        {
+          phrase: "Mudd",
+          Translation: "Lean",
+        },
+        {
+          phrase: "mudd",
+          Translation: "Lean",
+        },
+        {
+          phrase: "Lët",
+          Translation: "Let",
+        },
+        {
+          phrase: "lët",
+          Translation: "Let",
+        },
+        {
+          phrase: "Stayëd",
+          Translation: "Stayed",
+        },
+        {
+          phrase: "stayëd",
+          Translation: "Stayed",
+        },
+        {
+          phrase: "Gët",
+          Translation: "Get",
+        },
+        {
+          phrase: "gët",
+          Translation: "Get",
+        },
+        {
+          phrase: "Tëll",
+          Translation: "Tell",
+        },
+        {
+          phrase: "tëll",
+          Translation: "Tell",
+        },
+        {
+          phrase: "Ëm",
+          Translation: "Them",
+        },
+        {
+          phrase: "ëm",
+          Translation: "Them",
+        },
+        {
+          phrase: "Hëy",
+          Translation: "Hey",
+        },
+        {
+          phrase: "hëy",
+          Translation: "Hey",
+        },
+        {
+          phrase: "Monëy",
+          Translation: "Money",
+        },
+        {
+          phrase: "monëy",
+          Translation: "Money",
+        },
+        {
+          phrase: "Dëserve",
+          Translation: "Deserve",
+        },
+        {
+          phrase: "dëserve",
+          Translation: "Deserve",
+        },
+        {
+          phrase: "Changë",
+          Translation: "Change",
+        },
+        {
+          phrase: "changë",
+          Translation: "Change",
+        },
+        {
+          phrase: "Më",
+          Translation: "Me",
+        },
+        {
+          phrase: "më",
+          Translation: "Me",
+        },
+        {
+          phrase: "Outsidë",
+          Translation: "Outside",
+        },
+        {
+          phrase: "outsidë",
+          Translation: "Outside",
+        },
+        {
+          phrase: "Rëal",
+          Translation: "Real",
+        },
+        {
+          phrase: "rëal",
+          Translation: "Real",
+        },
+        {
+          phrase: "Doublë",
+          Translation: "Double",
+        },
+        {
+          phrase: "doublë",
+          Translation: "Double",
+        },
+        {
+          phrase: "Linë",
+          Translation: "Line",
+        },
+        {
+          phrase: "linë",
+          Translation: "Line",
+        },
+        {
+          phrase: "Bëtter",
+          Translation: "Better",
+        },
+        {
+          phrase: "bëtter",
+          Translation: "Better",
+        },
+        {
+          phrase: "Lïe",
+          Translation: "Lie",
+        },
+        {
+          phrase: "lïe",
+          Translation: "Lie",
+        },
+        {
+          phrase: "Dië",
+          Translation: "Die",
+        },
+        {
+          phrase: "dië",
+          Translation: "Die",
+        },
+        {
+          phrase: "Smooktobër",
+          Translation: "October",
+        },
+        {
+          phrase: "smooktobër",
+          Translation: "October",
+        },
+        {
+          phrase: "Rëlax",
+          Translation: "Relax",
+        },
+        {
+          phrase: "rëlax",
+          Translation: "Relax",
+        },
+        {
+          phrase: "Commënt",
+          Translation: "Comment",
+        },
+        {
+          phrase: "commënt",
+          Translation: "Comment",
+        },
+        {
+          phrase: "Nëw",
+          Translation: "New",
+        },
+        {
+          phrase: "nëw",
+          Translation: "New",
+        },
+        {
+          phrase: "Häter",
+          Translation: "Hater",
+        },
+        {
+          phrase: "häter",
+          Translation: "Hater",
+        },
+        {
+          phrase: "Flawlëss",
+          Translation: "Flawless",
+        },
+        {
+          phrase: "flawlëss",
+          Translation: "Flawless",
+        },
+        {
+          phrase: "Thë",
+          Translation: "The",
+        },
+        {
+          phrase: "thë",
+          Translation: "The",
+        },
+        {
+          phrase: "Lykë",
+          Translation: "Like",
+        },
+        {
+          phrase: "lykë",
+          Translation: "Like",
+        },
+        {
+          phrase: "Comë",
+          Translation: "Come",
+        },
+        {
+          phrase: "comë",
+          Translation: "Come",
+        },
+        {
+          phrase: "Systëm",
+          Translation: "System",
+        },
+        {
+          phrase: "systëm",
+          Translation: "System",
+        },
+        {
+          phrase: "Lyfë",
+          Translation: "Life",
+        },
+        {
+          phrase: "lyfë",
+          Translation: "Life",
+        },
+        {
+          phrase: "AftërLyfe",
+          Translation: "Afterlife",
+        },
+        {
+          phrase: "aftërlyfe",
+          Translation: "Afterlife",
+        },
+        {
+          phrase: "Morë",
+          Translation: "More",
+        },
+        {
+          phrase: "morë",
+          Translation: "More",
+        },
+        {
+          phrase: "Bëttr",
+          Translation: "Better",
+        },
+        {
+          phrase: "bëttr",
+          Translation: "Better",
+        },
+        {
+          phrase: "Mëan",
+          Translation: "Mean",
+        },
+        {
+          phrase: "mëan",
+          Translation: "Mean",
+        },
+        {
+          phrase: "Bënd",
+          Translation: "Bend",
+        },
+        {
+          phrase: "bënd",
+          Translation: "Bend",
+        },
+        {
+          phrase: "Dëmon",
+          Translation: "Demon",
+        },
+        {
+          phrase: "dëmon",
+          Translation: "Demon",
+        },
+        {
+          phrase: "Hëavyweight",
+          Translation: "Heavyweight",
+        },
+        {
+          phrase: "hëavyweight",
+          Translation: "Heavyweight",
+        },
+        {
+          phrase: "Homë",
+          Translation: "Home",
+        },
+        {
+          phrase: "homë",
+          Translation: "Home",
+        },
+        {
+          phrase: "Mysëlf",
+          Translation: "Myself",
+        },
+        {
+          phrase: "mysëlf",
+          Translation: "Myself",
+        },
+      ];
+    </script>
+    <style>
+      .wrapper {
+        width: 100%;
+        padding-top: 20px;
+        text-align: center;
+      }
+
+      h2,
+      h3 {
+        margin: 0 auto;
+      }
+
+      #lang {
+        display: block;
+        margin: 0 auto 20px;
+      }
+
+      .boxes {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-around;
+        max-width: 1000px;
+        margin: 0 auto;
+      }
+
+      .box {
+        width: 40%;
+      }
+
+      h1,
+      h2 {
+        text-align: center;
+      }
+
+      textarea {
+        display: block;
+        width: 100%;
+        min-height: 160px;
+        margin: 5px auto 20px;
+        border-width: 2px;
+        resize: none;
+      }
+      textarea:focus {
+        border: 2px solid black;
+        outline: none;
+      }
+
+      .btn-row {
+        text-align: center;
+        margin: 10px auto;
+      }
+
+      .clear {
+        display: inline-block;
+        text-decoration: none;
+        padding: 10px 40px;
+        color: black;
+        background-color: white;
+        border: 1px solid black;
+        border-radius: 20px;
+        transition: all 0.4s;
+      }
+      .clear:hover {
+        color: white;
+        background-color: black;
+      }
+
+      .tooltipped {
+        position: relative;
+      }
+      .tooltipped:before {
+        content: "";
+        position: absolute;
+        left: 50%;
+        margin-left: -5px;
+        bottom: 10px;
+        border-left: 5px solid transparent;
+        border-right: 5px solid transparent;
+        border-bottom: 5px solid black;
+      }
+      .tooltipped:after {
+        content: "Copied!";
+        position: absolute;
+        width: 56px;
+        height: 20px;
+        left: 50%;
+        margin-left: -28px;
+        bottom: -10px;
+        font-size: 14px;
+        line-height: 20px;
+        color: white;
+        background-color: black;
+      }
+      .logo-image {
+        width: 400px;
+      }
+      .box-col {
+        height: 250px;
+      }
+      .box-right {
+        color: #e5e5e5;
+      }
+      .box-left {
+      }
+      #input {
+        width: 100%;
+        height: 100%;
+        border: 2px solid #e5e5e5;
+        border-radius: 10px;
+        padding: 10px 20px;
+      }
+      .text-tr {
+        color: #4d90e1;
+        text-decoration: underline;
+        text-underline-offset: 8px;
+        text-decoration-thickness: 3px;
+      }
+      .text-trf {
+        color: #4d90e1;
+        text-decoration: none;
+        cursor: pointer;
+        transition: 0.2s;
+      }
+
+      .text-trf:hover {
+        color: #569ff8;
+        text-shadow: 0px 0px 2px #569ff89c;
+        transition: 0.2s;
+      }
+      #inputtranslate {
+        background-color: #f6f6f6;
+        color: #786874;
+        border: 2px solid #e5e5e5;
+        border-radius: 10px;
+        padding: 10px 20px;
+      }
+    </style>
+    <title>Twizzy Translate (New Languages)</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="row">
+        <img class="logo-image" src="logo.png" alt="" />
+      </div>
+      <div class="row">
+        <div class="col box-col box-right">
+          <h6 class="text-tr">Yeat-ese</h6>
+          <textarea name="input" id="input" cols="30" rows="10"></textarea>
+        </div>
+        <div class="col box-col box-left">
+          <h6 class="text-tr" onclick="switchtoenglish()" id="englishbtn">English</h6><h6 class="text-trf" style="margin-left: 6vh;margin-top: -2.7vh;" onclick="switchtogerman()" id="germanbtn">German</h6>
+          <textarea
+            name="input"
+            id="inputtranslate"
+            cols="30"
+            rows="10"
+            readonly
+          ></textarea>
+        </div>
+      </div>
+    </div>
+    <script>
+      var currentlang = "eng"
+      var textarea = document.getElementById("input");
+      var inputtranslate = document.getElementById("inputtranslate");
+
+      function switchtogerman(){
+        currentlang = "ger"
+        if(document.getElementById("englishbtn").classList.contains("text-tr")){
+          document.getElementById("englishbtn").classList.remove("text-tr")
+          document.getElementById("englishbtn").classList.add("text-trf")
+        } if(document.getElementById("englishbtn").classList.contains("text-tr") == false){
+          document.getElementById("germanbtn").classList.remove("text-trf")
+          document.getElementById("germanbtn").classList.add("text-tr")
+        }
+
+        var inputValue = textarea.value.trim().toLowerCase();
+        // Search for a matching phrase in the translation data
+        var matchingTranslation = translateData.find(function (item) {
+          console.log(item);
+        
+          return item.phrase === inputValue;
+        });
+
+        // Update the content of inputtranslate based on the matching translation
+        if (matchingTranslation) {
+          console.log(matchingTranslation);
+          if (currentlang == "eng"){
+            inputtranslate.value = matchingTranslation.Translation;
+          } else if(currentlang == "ger") {
+            inputtranslate.value = matchingTranslation.TranslationGerman;
+          }
+
+        } else {
+          // If no matching translation is found, clear the inputtranslate content
+          console.log("Not found");
+        
+          if (currentlang == "eng"){
+            inputtranslate.value = "Not found";
+          } else if(currentlang == "ger") {
+            inputtranslate.value = "Nicht gefunden";
+          }
+        }
+      }
+      function switchtoenglish(){
+        currentlang = "eng"
+        if(document.getElementById("englishbtn").classList.contains("text-trf")){
+          document.getElementById("englishbtn").classList.remove("text-trf")
+          document.getElementById("englishbtn").classList.add("text-tr")
+        } if(document.getElementById("englishbtn").classList.contains("text-trf") == false){
+          document.getElementById("germanbtn").classList.remove("text-tr")
+          document.getElementById("germanbtn").classList.add("text-trf")
+        }
+        var inputValue = textarea.value.trim().toLowerCase();
+        // Search for a matching phrase in the translation data
+        var matchingTranslation = translateData.find(function (item) {
+          console.log(item);
+        
+          return item.phrase === inputValue;
+        });
+
+        // Update the content of inputtranslate based on the matching translation
+        if (matchingTranslation) {
+          console.log(matchingTranslation);
+          if (currentlang == "eng"){
+            inputtranslate.value = matchingTranslation.Translation;
+          } else if(currentlang == "ger") {
+            inputtranslate.value = matchingTranslation.TranslationGerman;
+          }
+
+        } else {
+          // If no matching translation is found, clear the inputtranslate content
+          console.log("Not found");
+        
+          if (currentlang == "eng"){
+            inputtranslate.value = "Not found";
+          } else if(currentlang == "ger") {
+            inputtranslate.value = "Nicht gefunden";
+          }
+        }
+      }
+
+      $('#input').on("propertychange change keyup paste input", function () {
+        // Get the current value of the textarea
+        var inputValue = textarea.value.trim().toLowerCase();
+
+        // Search for a matching phrase in the translation data
+        var matchingTranslation = translateData.find(function (item) {
+          console.log(item);
+
+          return item.phrase === inputValue;
+        });
+
+        // Update the content of inputtranslate based on the matching translation
+        if (matchingTranslation) {
+          console.log(matchingTranslation);
+          if (currentlang == "eng"){
+            inputtranslate.value = matchingTranslation.Translation;
+          } else if(currentlang == "ger") {
+            inputtranslate.value = matchingTranslation.TranslationGerman;
+          }
+          
+        } else {
+          // If no matching translation is found, clear the inputtranslate content
+          console.log("Not found");
+
+          if (currentlang == "eng"){
+            inputtranslate.value = "Not found";
+          } else if(currentlang == "ger") {
+            inputtranslate.value = "Nicht gefunden";
+          }
+        }
+      });
+    </script>
+  </body>
+</html>
